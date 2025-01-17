@@ -1,12 +1,11 @@
 const API_BASE_URL = "http://localhost:3000/api";
 
-// Fetch all students on page load
 async function fetchStudents() {
   const response = await fetch(`${API_BASE_URL}/students`);
   const students = await response.json();
 
   const tableBody = document.getElementById("students-table-body");
-  tableBody.innerHTML = ""; // Clear previous entries
+  tableBody.innerHTML = "";
 
   students.forEach((student) => {
     const row = `
@@ -22,7 +21,6 @@ async function fetchStudents() {
   });
 }
 
-// Handle form submission
 async function assignSubject(event) {
   event.preventDefault();
 
@@ -40,7 +38,6 @@ async function assignSubject(event) {
     return;
   }
 
-  // Loop through each student and create an individual attendance record
   for (const studentId of studentIds) {
     const response = await fetch(`${API_BASE_URL}/attendance/`, {
       method: "POST",
@@ -63,7 +60,7 @@ async function assignSubject(event) {
     }
   }
 
-  fetchStudents(); // Refresh student list after processing
+  fetchStudents();
 }
 
 window.onload = fetchStudents;

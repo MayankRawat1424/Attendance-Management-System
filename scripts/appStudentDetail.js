@@ -18,7 +18,6 @@ async function fetchStudents() {
     // console.log(students);
     for (const student of students) {
       const tr = document.createElement("tr");
-      // Await the result of the async function
       const attendancePercentage = await calculateAttendancePercentage(
         student._id
       );
@@ -64,7 +63,6 @@ async function calculateAttendancePercentage(studentId) {
   }
 }
 
-// View attendance details for a specific student
 async function viewAttendance(studentId, studentName) {
   try {
     allStd.style.display = "none";
@@ -100,10 +98,8 @@ async function viewAttendance(studentId, studentName) {
   }
 }
 
-// Function to mark attendance (Present/Absent)
 async function markAttendance(attendanceId, studentId, status) {
   try {
-    // Send request to the backend to update attendance
     const response = await fetch(
       `${API_BASE_URL}/attendance/mark/${attendanceId}`,
       {
@@ -111,18 +107,15 @@ async function markAttendance(attendanceId, studentId, status) {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ studentId, status }), // Send status ('present' or 'absent')
+        body: JSON.stringify({ studentId, status }),
       }
     );
 
     const updatedRecord = await response.json();
 
-    // Check if the response was successful
     if (updatedRecord.success) {
-      // Ensure the student data is present in updatedRecord
       if (updatedRecord.attendance && updatedRecord.attendance.student) {
         // alert(`Attendance marked as ${status}`);
-        // Pass the student data to refreshStudent for viewing
         refreshStudent(studentId, updatedRecord.attendance.student.name);
       } else {
         alert("Student data not found in the updated record.");
@@ -135,13 +128,10 @@ async function markAttendance(attendanceId, studentId, status) {
   }
 }
 
-// Function to refresh student details after marking attendance
 async function refreshStudent(studentId, studentName) {
-  // Call viewAttendance and pass studentId and studentName
   await viewAttendance(studentId, studentName);
 }
 
-// Go back to the student list
 function backToStudents() {
   attendanceDetailsDiv.style.display = "none";
   studentListDiv.style.display = "block";

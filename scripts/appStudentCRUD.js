@@ -104,7 +104,6 @@ function cancelUpdate() {
   document.getElementById("addStudentForm").style.display = "block";
 }
 
-// Handle update student form submission
 document
   .getElementById("updateStudentForm")
   .addEventListener("submit", async (e) => {
