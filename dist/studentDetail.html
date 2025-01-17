@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Details</title>
+    <link rel="stylesheet" href="../styles/output.css" />
+  </head>
+  <body
+    class="bg-gray-100 font-sans leading-normal tracking-normal min-h-screen flex flex-col"
+  >
+    <header
+      class="flex border-b py-3 px-4 sm:px-10 bg-white font-[sans-serif] min-h-[65px] tracking-wide relative z-50"
+    >
+      <div
+        class="flex flex-wrap items-center gap-4 max-w-screen-xl mx-8 w-full"
+      >
+        <a
+          href="studentDetail.html"
+          class="lg:hover:text-[#007bff] text-gray-800 block text-[15px]"
+          >Attendence</a
+        >
+        <a
+          href="studentCRUD.html"
+          class="lg:hover:text-[#007bff] text-gray-800 block text-[15px]"
+          >Student</a
+        >
+        <a
+          href="assignSubject.html"
+          class="lg:hover:text-[#007bff] text-gray-800 block text-[15px]"
+          >Subject</a
+        >
+      </div>
+    </header>
+
+    <div class="container mx-auto pt-8 pb-16 px-16">
+      <h1 class="text-4xl text-left font-semibold mb-8">Student Attendance</h1>
+
+      <!-- Loading Message -->
+      <div id="loading" class="loading text-center text-xl text-gray-700 mb-8">
+        Loading students...
+      </div>
+
+      <!-- Student List -->
+      <h2 class="text-2xl font-semibold mb-4 mx-8" id="AllStd">All Students</h2>
+      <div
+        id="student-list"
+        class="mx-8 relative flex flex-col h-full overflow-scroll text-gray-700 bg-white shadow-md bg-clip-border"
+      >
+        <table class="w-full text-left table-auto min-w-max">
+          <thead class="bg-gray-200 text-gray-700">
+            <tr>
+              <th class="p-4 border-b border-blue-gray-100 bg-blue-gray-50">
+                <p
+                  class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70"
+                >
+                  Name
+                </p>
+              </th>
+              <th class="p-4 border-b border-blue-gray-100 bg-blue-gray-50">
+                <p
+                  class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70"
+                >
+                  Roll Number
+                </p>
+              </th>
+              <th class="p-4 border-b border-blue-gray-100 bg-blue-gray-50">
+                <p
+                  class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70"
+                >
+                  Class
+                </p>
+              </th>
+              <th class="p-4 border-b border-blue-gray-100 bg-blue-gray-50">
+                <p
+                  class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70"
+                >
+                  Section
+                </p>
+              </th>
+              <th class="p-4 border-b border-blue-gray-100 bg-blue-gray-50">
+                <p
+                  class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70"
+                >
+                  Attendance (%)
+                </p>
+              </th>
+              <th class="p-4 border-b border-blue-gray-100 bg-blue-gray-50">
+                <p
+                  class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70"
+                >
+                  Details
+                </p>
+              </th>
+            </tr>
+          </thead>
+          <tbody id="students-tbody">
+            <!-- Dynamic rows will be inserted here -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Student Attendance Details -->
+      <div id="attendance-details" class="attendance-details hidden">
+        <h2 class="mx-8 text-2xl font-semibold mb-4">
+          Attendance Details for
+          <span id="student-name" class="font-bold"></span>
+        </h2>
+        <!-- Styled Attendance Table -->
+        <div
+          id="attendance-list"
+          class="mx-8 mb-4 relative flex flex-col h-full overflow-scroll text-gray-700 bg-white shadow-md bg-clip-border"
+        >
+          <table class="w-full text-left table-auto min-w-max">
+            <thead class="bg-gray-200 text-gray-700">
+              <tr>
+                <th class="p-4 border-b border-blue-gray-100 bg-blue-gray-50">
+                  <p
+                    class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70"
+                  >
+                    Subject
+                  </p>
+                </th>
+                <th class="p-4 border-b border-blue-gray-100 bg-blue-gray-50">
+                  <p
+                    class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70"
+                  >
+                    Total Classes
+                  </p>
+                </th>
+                <th class="p-4 border-b border-blue-gray-100 bg-blue-gray-50">
+                  <p
+                    class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70"
+                  >
+                    Attended Classes
+                  </p>
+                </th>
+                <th class="p-4 border-b border-blue-gray-100 bg-blue-gray-50">
+                  <p
+                    class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70"
+                  >
+                    Attendance (%)
+                  </p>
+                </th>
+                <th class="p-4 border-b border-blue-gray-100 bg-blue-gray-50">
+                  <p
+                    class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70"
+                  >
+                    Mark As
+                  </p>
+                </th>
+              </tr>
+            </thead>
+            <tbody id="attendance-tbody">
+              <!-- Dynamic rows will be inserted here -->
+            </tbody>
+          </table>
+        </div>
+        <button
+          onclick="backToStudents()"
+          class="mx-8 mt-4 bg-blue-600 text-white py-2 px-6 rounded-md hover:bg-blue-500"
+        >
+          Back to Students
+        </button>
+      </div>
+    </div>
+
+    <footer class="bg-gray-900 text-white py-6 mt-auto">
+      <div class="container mx-auto text-center">
+        <p class="text-[15px]">2025 - Mayank Rawat - MP5SE</p>
+        <div class="flex justify-center space-x-6 mt-4 text-sm">
+          <a href="#" class="hover:text-gray-300 text-[15px]"></a>
+          <a href="#" class="hover:text-gray-300 text-[15px]"></a>
+          <!-- <a href="#" class="hover:text-gray-30 text-[15px]0">Contact</a> -->
+        </div>
+      </div>
+    </footer>
+    <script src="../scripts/appStudentDetail.js"></script>
+  </body>
+</html>

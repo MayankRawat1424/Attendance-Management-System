@@ -1,0 +1,11 @@
+Create a new page for Importing Subjects
+
+Create another page for updating Attendance
+
+Create a Dynamic Nav-bar for all the components (Unify all HTML content)
+
+Hide URL Binding to routes
+
+Beautify the Frontend with Tailwind CSS
+
+[Optional] Create a Login Window (Use "oAuth" API)
